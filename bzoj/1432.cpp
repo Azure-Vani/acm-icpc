@@ -1,0 +1,1 @@
+main(){int n,k;scanf("%d%d",&n,&k);printf("%d",n==1?1:k<n+1>>1?k*2:(n-k+1)*2);}
