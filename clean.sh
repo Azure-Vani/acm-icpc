@@ -1,5 +1,5 @@
 # deleted file list
-a=(datamk.cpp out ou in check.cpp force.cpp G.ps d.ps G.dot)
+a=(datamk.cpp out ou in check.cpp force.cpp G.ps d.ps G.dot D.ps D.dot)
 
 function In {
 	tmp=$1
