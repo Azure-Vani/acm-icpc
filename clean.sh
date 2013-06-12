@@ -1,5 +1,5 @@
 # deleted file list
-a=(datamk.cpp out ou in check.cpp force.cpp G.ps d.ps G.dot D.ps D.dot)
+a=(datamk.cpp out ou in check.cpp force.cpp G.ps d.ps G.dot D.ps D.dot in_b script.sh log)
 
 function In {
 	tmp=$1
