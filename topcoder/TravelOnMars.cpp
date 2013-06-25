@@ -32,7 +32,7 @@
 #define mp make_pair
 #define pb push_back
 #define rep(i,r) for(int i = 1; i <= r; i++)
-#define REP(i,l,r) for(inti = l; i <= r; i++)
+#define REP(i,l,r) for(int i = l; i <= r; i++)
 #define sqr(x) ((x)*(x))
 #define pi 3.14159265358979323846264338327950288419716939937510582097494459230781640628620899
 #define foreach(i,n) for(typeof(n.begin()) i = n.begin(); i != n.end(); ++i)
@@ -41,37 +41,22 @@ typedef long long Int64;
 
 using namespace std; 
 
+int f[100][100];
+
 class TravelOnMars {
 	public:
 	int minTimes(vector <int> range, int startCity, int endCity) {
 		int n = range.size();
-		if (startCity <= endCity) {
-			int A1 = 0, A2 = 0;
-			int t = startCity;
-			while (t != endCity) {
-				t = min(t + range[t], endCity); A1++;
+		memset(f, 50, sizeof f);
+		for (int i = 0; i < n; i++) {
+			for (int j = -range[i]; j <= range[i]; j++) {
+				int t = ((i + j) % n + n) % n;
+				f[i][t] = 1;
 			}
-			t = startCity;
-			while (t >= 0) t -= range[t], A2++;
-			t %= n, t += n; t = max(t, endCity);
-			while (t != endCity) {
-				t = max(t - range[t], endCity); A2++;
-			}
-			return min(A1, A2);
-		} else {
-			int A1 = 0, A2 = 0;
-			int t = startCity;
-			while (t != endCity) {
-				t = max(t - range[t], endCity), A1++;
-			}
-			t = startCity;
-			while (t < n) t += range[t], A2++;
-			t %= n; t = min(t, endCity);
-			while (t != endCity) {
-				t = min(t + range[t], endCity); A2++;
-			}
-			return min(A1, A2);
+			f[i][i] = 0;
 		}
+		REP(k,0,n-1) REP(i,0,n-1) REP(j,0,n-1) f[i][j] = min(f[i][j], f[i][k] + f[k][j]);
+		return f[startCity][endCity];
 	}
 	
 // BEGIN CUT HERE
