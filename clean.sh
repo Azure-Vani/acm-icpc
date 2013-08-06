@@ -17,7 +17,7 @@ function del {
 	if [ -x $1 ] || In $1 "${a[*]}"
 	then
 		echo "rm $1"
-		rm $1
+		rm $1 -i
 	fi
 }
 
@@ -29,5 +29,10 @@ function Dfs {
 	done
 }
 
-Dfs .
+if [ "$#" == "0" ]; then
+	Dfs .
+else
+	Dfs "$1"
+fi
+
 exit 0
