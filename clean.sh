@@ -1,5 +1,6 @@
 # deleted file list
 a=(datamk.cpp out ou in check.cpp force.cpp G.ps d.ps G.dot D.ps D.dot in_b script.sh log d.dot)
+name=$0
 
 function In {
 	tmp=$1
@@ -14,7 +15,7 @@ function In {
 }
 
 function del {
-	if [ -x $1 ] || In $1 "${a[*]}"
+	if [ -x $1 -a "$1" != "$name" ] || In $1 "${a[*]}"
 	then
 		echo "rm $1"
 		rm $1 -i
